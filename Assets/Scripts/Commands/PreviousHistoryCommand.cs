@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class NextBookingCommand : ICommand
-{
+public class PreviousHistoryCommand : ICommand {
+
     [SerializeField]
-    private ResultPanel bookingPanel;
+    private ResultPanel resultPanel;
     [SerializeField]
     private string commandName;
 
@@ -12,6 +12,7 @@ public class NextBookingCommand : ICommand
 
     public void Execute()
     {
-        bookingPanel.ShowNextBooking();
+        resultPanel.ShowPreviousHistory();
     }
+
 }

@@ -61,7 +61,7 @@ public class ResultPanel : MonoBehaviour {
 
 #region NAVIGATION METHODS
 
-    public void ShowPreviousBooking()
+    public void ShowPreviousHistory()
     {
         if (AppManager.ArtHistory.IsEmpty)
         {
@@ -77,7 +77,7 @@ public class ResultPanel : MonoBehaviour {
         UpdateHistoryStatus();
     }
 
-    public void ShowNextBooking()
+    public void ShowNextHistory()
     {
         if (AppManager.ArtHistory.IsEmpty)
         {

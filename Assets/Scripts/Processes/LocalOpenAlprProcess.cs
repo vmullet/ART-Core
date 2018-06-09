@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class LocalOpenAlprProcess : MonoBehaviour,IProcess<byte[],LocalOpenAlprResult>,ILoggable {
+public class LocalOpenAlprProcess : PlateRecognizer {
 
     private LocalOpenAlprConfig localOpenAlprConfig;
     private OpenAlprAnim alprAnim;
@@ -10,11 +10,11 @@ public class LocalOpenAlprProcess : MonoBehaviour,IProcess<byte[],LocalOpenAlprR
     private float executionTime;
     private bool isRunning = false;
 
-    public bool IsDone => !isRunning;
+    public override bool IsDone => !isRunning;
 
-    public LocalOpenAlprResult Result => alprResult;
+    public override string Result => alprResult.Plate;
 
-    public float ExecutionTime => executionTime;
+    public override float ExecutionTime => executionTime;
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class LocalOpenAlprProcess : MonoBehaviour,IProcess<byte[],LocalOpenAlprR
     }
 
 
-    public void StartProcess(byte[] input)
+    public override void StartProcess(byte[] input)
     {
         if (!isRunning)
         {
@@ -40,12 +40,12 @@ public class LocalOpenAlprProcess : MonoBehaviour,IProcess<byte[],LocalOpenAlprR
         }
     }
 
-    public void StopProcess()
+    public override void StopProcess()
     {
         StopAllCoroutines();
     }
 
-    public void ResetProcess()
+    public override void ResetProcess()
     {
         alprResult = null;
     }
@@ -87,7 +87,7 @@ public class LocalOpenAlprProcess : MonoBehaviour,IProcess<byte[],LocalOpenAlprR
         return "Alpr : " + executionTime.ToString("n3") + " seconds";
     }
 
-    public LogData ToLogData()
+    public override LogData ToLogData()
     {
         return new LogData("OpenAlpr " + localOpenAlprConfig.Region.ToUpper(), executionTime.ToString("n3") + " seconds");
     }

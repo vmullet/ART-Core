@@ -10,9 +10,9 @@ public class CommandDatabase : MonoBehaviour {
     [SerializeField]
     private TakePhotoCommand takePhoto;
     [SerializeField]
-    private PreviousBookingCommand previousBooking;
+    private PreviousHistoryCommand previousHistory;
     [SerializeField]
-    private NextBookingCommand nextBooking;
+    private NextHistoryCommand nextHistory;
     [SerializeField]
     private QuitCommand quitCommand;
 
@@ -30,8 +30,8 @@ public class CommandDatabase : MonoBehaviour {
         commandDatabase = new Dictionary<string, ICommand>
         {
             { takePhoto.Name, takePhoto },
-            { previousBooking.Name, previousBooking },
-            { nextBooking.Name, nextBooking },
+            { previousHistory.Name, previousHistory },
+            { nextHistory.Name, nextHistory },
             { quitCommand.Name, quitCommand }
         };
     }

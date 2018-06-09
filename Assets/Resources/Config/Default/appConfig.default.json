@@ -6,30 +6,8 @@
   },
    "localOpenAlprConfig":{
       "url":"",
-      "region":"eu"
+      "region":""
    },
-   "vuzixControls":[
-      {
-         "button":"FRONT_BUTTON_SHORT",
-         "command":"NEXT_BOOKING"
-      },
-      {
-         "button":"MIDDLE_BUTTON_SHORT",
-         "command":"PREVIOUS_BOOKING"
-      },
-      {
-         "button":"REAR_BUTTON_SHORT",
-         "command":"TAKE_PHOTO"
-      },
-      {
-         "button":"FRONT_BUTTON_LONG",
-         "command":"SWITCH_DEV_PROD"
-      },
-      {
-         "button":"REAR_BUTTON_LONG",
-         "command":"QUIT_APPLICATION"
-      }
-   ],
    "androidControls":[
       {
          "button":"BACK_BUTTON",
@@ -37,11 +15,29 @@
       },
       {
          "button":"VOLUME_UP_BUTTON",
-         "command":"NEXT_BOOKING"
+         "command":"NEXT_HISTORY"
       },
       {
          "button":"VOLUME_DOWN_BUTTON",
-         "command":"PREVIOUS_BOOKING"
+         "command":"PREVIOUS_HISTORY"
+      }
+   ],
+   "vuzixControls":[
+      {
+         "button":"FRONT_BUTTON_SHORT",
+         "command":"NEXT_HISTORY"
+      },
+      {
+         "button":"MIDDLE_BUTTON_SHORT",
+         "command":"PREVIOUS_HISTORY"
+      },
+      {
+         "button":"REAR_BUTTON_SHORT",
+         "command":"TAKE_PHOTO"
+      },
+      {
+         "button":"REAR_BUTTON_LONG",
+         "command":"QUIT_APPLICATION"
       }
    ],
    "speechControls":[

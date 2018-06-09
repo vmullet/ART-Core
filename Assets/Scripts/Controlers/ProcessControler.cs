@@ -6,21 +6,36 @@ public class ProcessControler : MonoBehaviour
     [SerializeField]
     private ScreenshotProcess screenshotProcess;
     [SerializeField]
-    private LocalOpenAlprProcess openAlprProcess;
+    private LocalOpenAlprProcess localAlprProcess; // Plate Recognizer 1
     [SerializeField]
-    private CloudOpenAlprProcess cloudAlprProcess;
+    private CloudOpenAlprProcess cloudAlprProcess; // Plate Recognizer 2
     [SerializeField]
     private InternetCheckProcess internetCheck;
     [SerializeField]
     private ResultPanel resultPanel;
     [SerializeField]
     private GUIUpdater guiUpdater;
+    [SerializeField]
+    private RecognizeType recognizeType;
 
     private bool isRunning = false;
+    private PlateRecognizer plateRecognizer; // The chosen Plate Recognizer
 
     private void Start()
     {
         isRunning = false;
+        switch (recognizeType)
+        {
+            case RecognizeType.CLOUD_OPENALPR:
+                plateRecognizer = cloudAlprProcess;
+                break;
+            case RecognizeType.LOCAL_OPENALPR:
+                plateRecognizer = localAlprProcess;
+                break;
+            default:
+                plateRecognizer = null;
+                break;
+        }
         guiUpdater.ShowTotalExecutionTime(string.Empty);
     }
 
@@ -51,11 +66,11 @@ public class ProcessControler : MonoBehaviour
         resultPanel.ResetPanel();
         screenshotProcess.StartProcess();
         yield return new WaitUntil(() => screenshotProcess.IsDone);
-        openAlprProcess.StartProcess(screenshotProcess.Result);
-        yield return new WaitUntil(() => openAlprProcess.IsDone);
-        if (openAlprProcess.Result != null)
+        plateRecognizer.StartProcess(screenshotProcess.Result);
+        yield return new WaitUntil(() => plateRecognizer.IsDone);
+        if (plateRecognizer.Result != string.Empty)
         {
-            resultPanel.ShowPlate(openAlprProcess.Result.Plate);
+            resultPanel.ShowPlate(plateRecognizer.Result);
             // Add any post treatment there
         }
         else
@@ -68,14 +83,13 @@ public class ProcessControler : MonoBehaviour
     private void ResetAllProcess()
     {
         screenshotProcess.ResetProcess();
-        openAlprProcess.ResetProcess();
+        plateRecognizer.ResetProcess();
     }
 
     private void ShowExecutionTime()
     {
-        float total = openAlprProcess.ExecutionTime;
-        AppManager.System.ShowMessage(openAlprProcess.ToLogString());
-        guiUpdater.ShowTotalExecutionTime("Alpr : " + openAlprProcess.ExecutionTime.ToString("n3") + " sec\n"
+        float total = plateRecognizer.ExecutionTime;
+        guiUpdater.ShowTotalExecutionTime("Alpr : " + plateRecognizer.ExecutionTime.ToString("n3") + " sec\n"
             + "Total : " + total.ToString("n3") + " sec");
     }
 
@@ -84,9 +98,9 @@ public class ProcessControler : MonoBehaviour
     {
         string picturePath = LogWriter.WritePicture(screenshotProcess.Result);
 
-        float totalTime = openAlprProcess.ExecutionTime;
-        LogRecord record = LogRecord.CreateRecord(new LogData(openAlprProcess.Result.Plate), 
-                                                  openAlprProcess.ToLogData(),
+        float totalTime = plateRecognizer.ExecutionTime;
+        LogRecord record = LogRecord.CreateRecord(new LogData(plateRecognizer.Result), 
+                                                  plateRecognizer.ToLogData(),
                                                   new LogData("Total", totalTime.ToString("n3") + " seconds"),
                                                   GPS.ToLogData(),
                                                   new LogData("Picture",picturePath,true)

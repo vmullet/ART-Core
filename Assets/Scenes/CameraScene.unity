@@ -1970,12 +1970,12 @@ MonoBehaviour:
   takePhoto:
     processControler: {fileID: 820973828}
     commandName: TAKE_PHOTO
-  previousBooking:
-    bookingPanel: {fileID: 1488644276}
-    commandName: PREVIOUS_RESULT
-  nextBooking:
-    bookingPanel: {fileID: 1488644276}
-    commandName: NEXT_RESULT
+  previousHistory:
+    resultPanel: {fileID: 1488644276}
+    commandName: PREVIOUS_HISTORY
+  nextHistory:
+    resultPanel: {fileID: 1488644276}
+    commandName: NEXT_HISTORY
   quitCommand:
     commandName: QUIT_APPLICATION
 --- !u!1 &683690503
@@ -2239,11 +2239,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenshotProcess: {fileID: 1337173602}
-  openAlprProcess: {fileID: 472755573}
+  localAlprProcess: {fileID: 472755573}
   cloudAlprProcess: {fileID: 472755574}
   internetCheck: {fileID: 873643636}
   resultPanel: {fileID: 1488644276}
   guiUpdater: {fileID: 361665965}
+  recognizeType: 0
 --- !u!4 &820973829
 Transform:
   m_ObjectHideFlags: 0

@@ -2,8 +2,7 @@
 using System.Collections;
 using UnityEngine.Networking;
 
-public class CloudOpenAlprProcess : MonoBehaviour,IProcess<byte[], CloudOpenAlprResult>, ILoggable
-{
+public class CloudOpenAlprProcess : PlateRecognizer {
 
     private CloudOpenAlprConfig cloudOpenAlprConfig;
     private OpenAlprAnim alprAnim;
@@ -15,11 +14,11 @@ public class CloudOpenAlprProcess : MonoBehaviour,IProcess<byte[], CloudOpenAlpr
     const string IMAGE_PARAMETER = "image";
     #endregion
 
-    public bool IsDone => !isRunning;
+    public override bool IsDone => !isRunning;
 
-    public CloudOpenAlprResult Result => alprResult;
+    public override string Result => alprResult.Plate;
 
-    public float ExecutionTime => executionTime;
+    public override float ExecutionTime => executionTime;
 
     private void Awake()
     {
@@ -32,7 +31,7 @@ public class CloudOpenAlprProcess : MonoBehaviour,IProcess<byte[], CloudOpenAlpr
     }
 
 
-    public void StartProcess(byte[] input)
+    public override void StartProcess(byte[] input)
     {
         if (!isRunning)
         {
@@ -70,12 +69,12 @@ public class CloudOpenAlprProcess : MonoBehaviour,IProcess<byte[], CloudOpenAlpr
         yield return null;
     }
 
-        public void StopProcess()
+        public override void StopProcess()
     {
         StopAllCoroutines();
     }
 
-    public void ResetProcess()
+    public override void ResetProcess()
     {
         alprResult = null;
     }
@@ -91,7 +90,7 @@ public class CloudOpenAlprProcess : MonoBehaviour,IProcess<byte[], CloudOpenAlpr
         return string.Format(cloudOpenAlprConfig.Url,cloudOpenAlprConfig.Region,cloudOpenAlprConfig.Token);
     }
 
-    public LogData ToLogData()
+    public override LogData ToLogData()
     {
         return new LogData("OpenAlpr " + cloudOpenAlprConfig.Region.ToUpper(), executionTime.ToString("n3") + " seconds");
     }
