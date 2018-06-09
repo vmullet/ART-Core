@@ -6,11 +6,11 @@ public class ProcessControler : MonoBehaviour
     [SerializeField]
     private ScreenshotProcess screenshotProcess;
     [SerializeField]
-    private OpenAlprProcess openAlprProcess;
+    private LocalOpenAlprProcess openAlprProcess;
     [SerializeField]
     private InternetCheckProcess internetCheck;
     [SerializeField]
-    private ResultPanel bookingPanel;
+    private ResultPanel resultPanel;
     [SerializeField]
     private GUIUpdater guiUpdater;
 
@@ -46,18 +46,18 @@ public class ProcessControler : MonoBehaviour
     private IEnumerator AsyncProcess()
     {
         isRunning = true;
-        bookingPanel.ResetPanel();
+        resultPanel.ResetPanel();
         screenshotProcess.StartProcess();
         yield return new WaitUntil(() => screenshotProcess.IsDone);
         openAlprProcess.StartProcess(screenshotProcess.Result);
         yield return new WaitUntil(() => openAlprProcess.IsDone);
-        if (openAlprProcess.Result != string.Empty)
+        if (openAlprProcess.Result != null)
         {
-            bookingPanel.ShowPlate(openAlprProcess.Result);
+            resultPanel.ShowPlate(openAlprProcess.Result.Plate);
         }
         else
         {
-            bookingPanel.ShowPlateNotFound();
+            resultPanel.ShowPlateNotFound();
         }
         isRunning = false;
     }
@@ -82,7 +82,7 @@ public class ProcessControler : MonoBehaviour
         string picturePath = LogWriter.WritePicture(screenshotProcess.Result);
 
         float totalTime = openAlprProcess.ExecutionTime;
-        LogRecord record = LogRecord.CreateRecord(new LogData(openAlprProcess.Result), 
+        LogRecord record = LogRecord.CreateRecord(new LogData(openAlprProcess.Result.Plate), 
                                                   openAlprProcess.ToLogData(),
                                                   new LogData("Total", totalTime.ToString("n3") + " seconds"),
                                                   GPS.ToLogData(),

@@ -1430,7 +1430,6 @@ RectTransform:
   - {fileID: 1449974036}
   - {fileID: 1256159291}
   - {fileID: 401447279}
-  - {fileID: 1240752759}
   m_Father: {fileID: 1964003676}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2155,10 +2154,10 @@ MonoBehaviour:
     commandName: TAKE_PHOTO
   previousBooking:
     bookingPanel: {fileID: 1488644276}
-    commandName: PREVIOUS_BOOKING
+    commandName: PREVIOUS_RESULT
   nextBooking:
     bookingPanel: {fileID: 1488644276}
-    commandName: NEXT_BOOKING
+    commandName: NEXT_RESULT
   switchEuGb:
     openAlprProcess: {fileID: 472755573}
     commandName: SWITCH_EU_GB
@@ -2293,7 +2292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.40177113, y: 0.9034483}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.9041, y: 0.5999603}
+  m_AnchoredPosition: {x: -1.9040985, y: 0.59994507}
   m_SizeDelta: {x: 0.80833, y: -1.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &737795632
@@ -2427,7 +2426,7 @@ MonoBehaviour:
   screenshotProcess: {fileID: 1337173602}
   openAlprProcess: {fileID: 472755573}
   internetCheck: {fileID: 873643636}
-  bookingPanel: {fileID: 1488644276}
+  resultPanel: {fileID: 1488644276}
   guiUpdater: {fileID: 361665965}
 --- !u!4 &820973829
 Transform:
@@ -3114,13 +3113,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1128529425}
-  m_Father: {fileID: 361665962}
-  m_RootOrder: 10
+  m_Father: {fileID: 1488644273}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.69965625, y: 0.77125007}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.669098, y: -309}
-  m_SizeDelta: {x: -31.347, y: 0}
+  m_AnchorMin: {x: 0, y: 0.45417044}
+  m_AnchorMax: {x: 1, y: 0.78136545}
+  m_AnchoredPosition: {x: 0.18084717, y: 1.141922}
+  m_SizeDelta: {x: -0.36120605, y: -7.2381897}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1256159290
 GameObject:
@@ -3437,7 +3436,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.45417044}
   m_AnchorMax: {x: 1, y: 0.541}
-  m_AnchoredPosition: {x: -1.8999853, y: -51.40001}
+  m_AnchoredPosition: {x: -1.8999634, y: -51.40001}
   m_SizeDelta: {x: 0.8, y: 14.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1337173600
@@ -3936,6 +3935,7 @@ RectTransform:
   - {fileID: 1624677953}
   - {fileID: 2034542057}
   - {fileID: 529235898}
+  - {fileID: 1240752759}
   m_Father: {fileID: 361665962}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3988,14 +3988,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 681330c1e47e93f41bae9158a2442563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  picture: {fileID: 0}
+  picture: {fileID: 1128529426}
   vehiclePlate: {fileID: 995856435}
   bookingNumber: {fileID: 624252557}
   clientSurname: {fileID: 1863439562}
   outboundDate: {fileID: 1315145660}
-  status: {fileID: 0}
-  parkingArea: {fileID: 0}
-  petQuantity: {fileID: 1362714405}
+  petQuantity: {fileID: 352779724}
   bookingHistoryStatus: {fileID: 2024721326}
 --- !u!1 &1518564622
 GameObject:
@@ -4097,7 +4095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.3767235}
   m_AnchorMax: {x: 1, y: 0.45417044}
-  m_AnchoredPosition: {x: -5.510886, y: -68.90001}
+  m_AnchoredPosition: {x: -5.5108643, y: -68.90001}
   m_SizeDelta: {x: 0, y: 20.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1743884825
@@ -4907,7 +4905,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.29200003}
   m_AnchorMax: {x: 1, y: 0.3767235}
-  m_AnchoredPosition: {x: -3.0108862, y: -86.899994}
+  m_AnchoredPosition: {x: -3.0108643, y: -86.89998}
   m_SizeDelta: {x: -1, y: 15.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2039527123

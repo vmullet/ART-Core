@@ -2,11 +2,11 @@
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class OpenAlprProcess : MonoBehaviour,IProcess<byte[],string>,ILoggable {
+public class LocalOpenAlprProcess : MonoBehaviour,IProcess<byte[],LocalOpenAlprResult>,ILoggable {
 
-    private OpenAlprConfig openAlprConfig;
+    private LocalOpenAlprConfig localOpenAlprConfig;
     private OpenAlprAnim alprAnim;
-    private OpenAlprResult alprResult;
+    private LocalOpenAlprResult alprResult;
     private float executionTime;
     private bool isRunning = false;
 
@@ -15,7 +15,7 @@ public class OpenAlprProcess : MonoBehaviour,IProcess<byte[],string>,ILoggable {
 
     public bool IsDone => !isRunning;
 
-    public string Result => alprResult != null ? alprResult.Plate : string.Empty;
+    public LocalOpenAlprResult Result => alprResult;
 
     public float ExecutionTime => executionTime;
 
@@ -58,14 +58,14 @@ public class OpenAlprProcess : MonoBehaviour,IProcess<byte[],string>,ILoggable {
         float start = Time.realtimeSinceStartup;
         alprAnim.StartAnim();
         WWWForm form = new WWWForm();
-        form.AddField("region", openAlprConfig.Region);
+        form.AddField("region", localOpenAlprConfig.Region);
         form.AddBinaryData("file", picture,"file.jpg","image/jpeg");
         using (UnityWebRequest www = UnityWebRequest.Post(GetUrl(), form))
         {
             yield return www.SendWebRequest();
             if (!www.isNetworkError || !www.isHttpError)
             {
-                alprResult = OpenAlprResult.CreateFromJson(www.downloadHandler.text);
+                alprResult = LocalOpenAlprResult.CreateFromJson(www.downloadHandler.text);
             }
             else
             {
@@ -82,20 +82,20 @@ public class OpenAlprProcess : MonoBehaviour,IProcess<byte[],string>,ILoggable {
     private void InitProcess()
     {
         isRunning = false;
-        openAlprConfig = AppManager.Config.OpenAlprWS;
+        localOpenAlprConfig = AppManager.Config.LocalOpenAlprConfig;
     }
 
     private string GetUrl()
     {
-        return openAlprConfig.Region == "eu" ? openAlprConfig.Url : "http://79.137.72.55:5000/v3/api/detection";
+        return localOpenAlprConfig.Region == "eu" ? localOpenAlprConfig.Url : "http://79.137.72.55:5000/v3/api/detection";
     }
 
     public void SwitchRegion()
     {
-        if (openAlprConfig.Region == "eu")
-            openAlprConfig.Region = "gb";
+        if (localOpenAlprConfig.Region == "eu")
+            localOpenAlprConfig.Region = "gb";
         else
-            openAlprConfig.Region = "eu";
+            localOpenAlprConfig.Region = "eu";
     }
 
     public string ToLogString()
@@ -105,6 +105,6 @@ public class OpenAlprProcess : MonoBehaviour,IProcess<byte[],string>,ILoggable {
 
     public LogData ToLogData()
     {
-        return new LogData("OpenAlpr " + openAlprConfig.Region.ToUpper(), executionTime.ToString("n3") + " seconds");
+        return new LogData("OpenAlpr " + localOpenAlprConfig.Region.ToUpper(), executionTime.ToString("n3") + " seconds");
     }
 }

@@ -4,7 +4,7 @@
 public class SwitchEuGbCommand : ICommand {
 
     [SerializeField]
-    private OpenAlprProcess openAlprProcess;
+    private LocalOpenAlprProcess openAlprProcess;
     [SerializeField]
     private string commandName;
 

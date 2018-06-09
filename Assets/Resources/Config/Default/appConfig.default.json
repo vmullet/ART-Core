@@ -1,48 +1,13 @@
 {
-   "openAlprConfig":{
-      "url":"http://79.137.72.55:5000/v4/api/detection",
-      "defaultRegion":"eu"
+  "cloudOpenAlprConfig":{
+      "url":"https://api.openalpr.com/v2/recognize?recognize_vehicle=1&country={0}&secret_key={1}",
+      "region":"eu",
+      "token":"sk_126cc3501dd60c7c40c17fd4"
+  },
+   "localOpenAlprConfig":{
+      "url":"",
+      "region":"eu"
    },
-   "eurotunnelConfig":{
-      "urlDev":"https://ticketsdev.eurotunnel5.com/myeurotunnelws/myetbookrecall.asmx",
-      "urlProd":"https://api.eurotunnel.com/myeurotunnelws/myetbookrecall.asmx",
-      "defaultMode":"prod"
-   },
-   "bookingCriterias":[
-      {
-         "type":"NOT_FOUND",
-         "dateStatus":"NOT FOUND",
-         "parkingArea":"ZONE 1"
-      },
-      {
-         "type":"FLEXI",
-         "dateStatus":"FLEXI",
-         "parkingArea":"CHECK IN"
-      },
-      {
-         "type":"DATE",
-         "value":-210,
-         "dateStatus":"EARLY",
-         "parkingArea":"ZONE 3"
-      },
-      {
-         "type":"DATE",
-         "value":-150,
-         "dateStatus":"EARLY",
-         "parkingArea":"ZONE 2"
-      },
-      {
-         "type":"DATE",
-         "value":0,
-         "dateStatus":"ON TIME",
-         "parkingArea":"ZONE 1"
-      },
-      {
-         "type":"OTHER",
-         "dateStatus":"LATE",
-         "parkingArea":"ZONE 1"
-      }
-   ],
    "vuzixControls":[
       {
          "button":"FRONT_BUTTON_SHORT",
@@ -83,14 +48,6 @@
       {
          "speech":"vuzix photo",
          "command":"TAKE_PHOTO"
-      },
-	  {
-         "speech":"vuzix avant",
-         "command":"PREVIOUS_BOOKING"
-      },
-      {
-         "speech":"vuzix ensuite",
-         "command":"NEXT_BOOKING"
       },
       {
          "speech":"vuzix quitter",

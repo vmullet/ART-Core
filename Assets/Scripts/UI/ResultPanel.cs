@@ -15,10 +15,6 @@ public class ResultPanel : MonoBehaviour {
     [SerializeField]
     private Text outboundDate;
     [SerializeField]
-    private Text status;
-    [SerializeField]
-    private Text parkingArea;
-    [SerializeField]
     private Text petQuantity;
     [SerializeField]
     private Text bookingHistoryStatus;
@@ -33,7 +29,7 @@ public class ResultPanel : MonoBehaviour {
     }
 
     
-    public void ShowResult(OpenAlprResult bookingData)
+    public void ShowResult(LocalOpenAlprResult bookingData)
     {
         
     }
@@ -141,10 +137,6 @@ public class ResultPanel : MonoBehaviour {
         bookingNumber.text = string.Empty;
         clientSurname.text = string.Empty;
         outboundDate.text = string.Empty;
-        status.text = string.Empty;
-        status.color = Color.white;
-        parkingArea.text = string.Empty;
-        parkingArea.color = Color.white;
         petQuantity.text = string.Empty;
         bookingHistoryStatus.text = string.Empty;
     }

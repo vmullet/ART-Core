@@ -1,6 +1,6 @@
 ﻿public class ArtHistory {
 
-    private IndexedDictionary<string,OpenAlprResult> bookingHistory;
+    private IndexedDictionary<string,LocalOpenAlprResult> bookingHistory;
     private int currentIndex;
     private int countNotFound;
 
@@ -18,16 +18,16 @@
 
     public bool IsLast => bookingHistory.Count > 0 && currentIndex == (bookingHistory.Count - 1);
 
-    public OpenAlprResult CurrentElement => currentIndex >= 0 ? bookingHistory[currentIndex] : null;
+    public LocalOpenAlprResult CurrentElement => currentIndex >= 0 ? bookingHistory[currentIndex] : null;
 
     public ArtHistory()
     {
-        bookingHistory = new IndexedDictionary<string, OpenAlprResult>();
+        bookingHistory = new IndexedDictionary<string, LocalOpenAlprResult>();
         currentIndex = -1;
         countNotFound = 0;
     }
 
-    public OpenAlprResult AddBooking(OpenAlprResult openAlprResult)
+    public LocalOpenAlprResult AddBooking(LocalOpenAlprResult openAlprResult)
     {
         if (!IsEmpty)
             currentIndex = bookingHistory.Count - 1;
@@ -52,7 +52,7 @@
         return countNotFound;
     }
     
-    public OpenAlprResult First()
+    public LocalOpenAlprResult First()
     {
         if (IsEmpty)
             return null;
@@ -61,7 +61,7 @@
         return bookingHistory[currentIndex];
     }
 
-    public OpenAlprResult Last()
+    public LocalOpenAlprResult Last()
     {
         if (IsEmpty)
             return null;
@@ -70,7 +70,7 @@
         return bookingHistory[currentIndex];
     }
 
-    public OpenAlprResult Previous()
+    public LocalOpenAlprResult Previous()
     {
         if (IsEmpty)
             return null;
@@ -81,7 +81,7 @@
         return bookingHistory[currentIndex];
     }
 
-    public OpenAlprResult Next()
+    public LocalOpenAlprResult Next()
     {
         if (IsEmpty)
             return null;

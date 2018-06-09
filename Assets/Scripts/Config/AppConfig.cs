@@ -5,7 +5,9 @@ using UnityEngine;
 public class AppConfig
 {
     [SerializeField]
-    private OpenAlprConfig openAlprConfig;
+    private LocalOpenAlprConfig localOpenAlprConfig;
+    [SerializeField]
+    private CloudOpenAlprConfig cloudOpenAlprConfig;
     [SerializeField]
     private PlatformControl[] vuzixControls;
     [SerializeField]
@@ -13,7 +15,8 @@ public class AppConfig
     [SerializeField]
     private SpeechControl[] speechControls;
 
-    public OpenAlprConfig OpenAlprWS => openAlprConfig;
+    public LocalOpenAlprConfig LocalOpenAlprConfig => localOpenAlprConfig;
+    public CloudOpenAlprConfig CloudOpenAlprConfig => cloudOpenAlprConfig;
     public PlatformControl[] VuzixControls => vuzixControls;
     public PlatformControl[] AndroidControls => androidControls;
     public SpeechControl[] SpeechControls => speechControls;
@@ -25,7 +28,8 @@ public class AppConfig
 
     public bool IsValid()
     {
-        return openAlprConfig.IsValid();
+        return localOpenAlprConfig.IsValid()
+        || cloudOpenAlprConfig.IsValid();
     }
 
 }

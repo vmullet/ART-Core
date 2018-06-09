@@ -2,24 +2,24 @@
 using UnityEngine;
 
 [Serializable]
-public class OpenAlprConfig {
+public class LocalOpenAlprConfig {
 
     [SerializeField]
     private string url;
     [SerializeField]
-    private string defaultRegion;
+    private string region;
 
     public string Url => url;
     public string Region
     {
-        get { return defaultRegion.ToLower(); }
-        set { defaultRegion = value; }
+        get { return region.ToLower(); }
+        set { region = value; }
     }
 
     public bool IsValid()
     {
         return url != string.Empty 
-            && defaultRegion != string.Empty;
+            && region != string.Empty;
     }
 
 
