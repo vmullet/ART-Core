@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class PlateRecognizer : MonoBehaviour, IProcess<byte[], string>, ILoggable
+public abstract class PlateRecognizerProcess : MonoBehaviour, IProcess<byte[], string>, ILoggable
 {
     public abstract bool IsDone { get; }
 

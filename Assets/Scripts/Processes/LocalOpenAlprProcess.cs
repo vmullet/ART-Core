@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class LocalOpenAlprProcess : PlateRecognizer {
+public class LocalOpenAlprProcess : PlateRecognizerProcess {
 
     private LocalOpenAlprConfig localOpenAlprConfig;
     private OpenAlprAnim alprAnim;

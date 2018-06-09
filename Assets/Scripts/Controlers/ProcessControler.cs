@@ -19,7 +19,7 @@ public class ProcessControler : MonoBehaviour
     private RecognizeType recognizeType;
 
     private bool isRunning = false;
-    private PlateRecognizer plateRecognizer; // The chosen Plate Recognizer
+    private PlateRecognizerProcess plateRecognizer; // The chosen Plate Recognizer
 
     private void Start()
     {

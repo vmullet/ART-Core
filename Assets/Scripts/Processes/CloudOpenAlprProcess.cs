@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.Networking;
 
-public class CloudOpenAlprProcess : PlateRecognizer {
+public class CloudOpenAlprProcess : PlateRecognizerProcess {
 
     private CloudOpenAlprConfig cloudOpenAlprConfig;
     private OpenAlprAnim alprAnim;
