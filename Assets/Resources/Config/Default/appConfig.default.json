@@ -1,0 +1,100 @@
+{
+   "openAlprConfig":{
+      "url":"http://79.137.72.55:5000/v4/api/detection",
+      "defaultRegion":"eu"
+   },
+   "eurotunnelConfig":{
+      "urlDev":"https://ticketsdev.eurotunnel5.com/myeurotunnelws/myetbookrecall.asmx",
+      "urlProd":"https://api.eurotunnel.com/myeurotunnelws/myetbookrecall.asmx",
+      "defaultMode":"prod"
+   },
+   "bookingCriterias":[
+      {
+         "type":"NOT_FOUND",
+         "dateStatus":"NOT FOUND",
+         "parkingArea":"ZONE 1"
+      },
+      {
+         "type":"FLEXI",
+         "dateStatus":"FLEXI",
+         "parkingArea":"CHECK IN"
+      },
+      {
+         "type":"DATE",
+         "value":-210,
+         "dateStatus":"EARLY",
+         "parkingArea":"ZONE 3"
+      },
+      {
+         "type":"DATE",
+         "value":-150,
+         "dateStatus":"EARLY",
+         "parkingArea":"ZONE 2"
+      },
+      {
+         "type":"DATE",
+         "value":0,
+         "dateStatus":"ON TIME",
+         "parkingArea":"ZONE 1"
+      },
+      {
+         "type":"OTHER",
+         "dateStatus":"LATE",
+         "parkingArea":"ZONE 1"
+      }
+   ],
+   "vuzixControls":[
+      {
+         "button":"FRONT_BUTTON_SHORT",
+         "command":"NEXT_BOOKING"
+      },
+      {
+         "button":"MIDDLE_BUTTON_SHORT",
+         "command":"PREVIOUS_BOOKING"
+      },
+      {
+         "button":"REAR_BUTTON_SHORT",
+         "command":"TAKE_PHOTO"
+      },
+      {
+         "button":"FRONT_BUTTON_LONG",
+         "command":"SWITCH_DEV_PROD"
+      },
+      {
+         "button":"REAR_BUTTON_LONG",
+         "command":"QUIT_APPLICATION"
+      }
+   ],
+   "androidControls":[
+      {
+         "button":"BACK_BUTTON",
+         "command":"TAKE_PHOTO"
+      },
+      {
+         "button":"VOLUME_UP_BUTTON",
+         "command":"NEXT_BOOKING"
+      },
+      {
+         "button":"VOLUME_DOWN_BUTTON",
+         "command":"PREVIOUS_BOOKING"
+      }
+   ],
+   "speechControls":[
+      {
+         "speech":"vuzix photo",
+         "command":"TAKE_PHOTO"
+      },
+	  {
+         "speech":"vuzix avant",
+         "command":"PREVIOUS_BOOKING"
+      },
+      {
+         "speech":"vuzix ensuite",
+         "command":"NEXT_BOOKING"
+      },
+      {
+         "speech":"vuzix quitter",
+         "command":"QUIT_APPLICATION"
+      }
+   ]
+}

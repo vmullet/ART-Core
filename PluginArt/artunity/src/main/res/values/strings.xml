@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name" translatable="false">ART</string>
+    <string name="voice_cmd_take_photo">photo</string>
+    <string name="voice_cmd_previous">avant</string>
+    <string name="voice_cmd_next">après</string>
+    <string name="voice_cmd_first">premier</string>
+    <string name="voice_cmd_last">dernier</string>
+</resources>

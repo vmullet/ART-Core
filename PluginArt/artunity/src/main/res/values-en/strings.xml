@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="voice_cmd_take_photo">photo</string>
+    <string name="voice_cmd_previous">back</string>
+    <string name="voice_cmd_next">next</string>
+    <string name="voice_cmd_first">first</string>
+    <string name="voice_cmd_last">last</string>
+</resources>
