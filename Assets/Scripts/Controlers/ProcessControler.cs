@@ -56,6 +56,7 @@ public class ProcessControler : MonoBehaviour
         if (openAlprProcess.Result != null)
         {
             resultPanel.ShowPlate(openAlprProcess.Result.Plate);
+            // Add any post treatment there
         }
         else
         {
