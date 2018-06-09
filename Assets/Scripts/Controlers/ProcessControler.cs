@@ -8,6 +8,8 @@ public class ProcessControler : MonoBehaviour
     [SerializeField]
     private LocalOpenAlprProcess openAlprProcess;
     [SerializeField]
+    private CloudOpenAlprProcess cloudAlprProcess;
+    [SerializeField]
     private InternetCheckProcess internetCheck;
     [SerializeField]
     private ResultPanel resultPanel;

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
 public class CloudOpenAlprProcess : MonoBehaviour,IProcess<byte[], CloudOpenAlprResult>, ILoggable
 {
@@ -7,9 +8,12 @@ public class CloudOpenAlprProcess : MonoBehaviour,IProcess<byte[], CloudOpenAlpr
     private CloudOpenAlprConfig cloudOpenAlprConfig;
     private OpenAlprAnim alprAnim;
     private CloudOpenAlprResult alprResult;
-
     private float executionTime;
     private bool isRunning = false;
+
+    #region CONSTANTES
+    const string IMAGE_PARAMETER = "image";
+    #endregion
 
     public bool IsDone => !isRunning;
 
@@ -43,6 +47,26 @@ public class CloudOpenAlprProcess : MonoBehaviour,IProcess<byte[], CloudOpenAlpr
 
     public IEnumerator Process(byte[] picture)
     {
+        float start = Time.realtimeSinceStartup;
+        alprAnim.StartAnim();
+        WWWForm form = new WWWForm();
+        form.AddBinaryData(IMAGE_PARAMETER,picture);
+        using (UnityWebRequest www = UnityWebRequest.Post(GetUrl(), form))
+        {
+            yield return www.SendWebRequest();
+            if (!www.isNetworkError || !www.isHttpError)
+            {
+                alprResult = CloudOpenAlprResult.CreateFromJson(www.downloadHandler.text);
+            }
+            else
+            {
+                AppManager.System.ShowMessage("Cloud OpenAlpr server error");
+            }
+        }
+        alprAnim.StopAnim();
+        yield return new WaitUntil(() => alprAnim.IsDone);
+        isRunning = false;
+        executionTime = Time.realtimeSinceStartup - start;
         yield return null;
     }
 

@@ -14,8 +14,6 @@ public class CommandDatabase : MonoBehaviour {
     [SerializeField]
     private NextBookingCommand nextBooking;
     [SerializeField]
-    private SwitchEuGbCommand switchEuGb;
-    [SerializeField]
     private QuitCommand quitCommand;
 
     #endregion
@@ -34,7 +32,6 @@ public class CommandDatabase : MonoBehaviour {
             { takePhoto.Name, takePhoto },
             { previousBooking.Name, previousBooking },
             { nextBooking.Name, nextBooking },
-            { switchEuGb.Name, switchEuGb },
             { quitCommand.Name, quitCommand }
         };
     }

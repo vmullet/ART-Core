@@ -10,9 +10,6 @@ public class LocalOpenAlprProcess : MonoBehaviour,IProcess<byte[],LocalOpenAlprR
     private float executionTime;
     private bool isRunning = false;
 
-    [SerializeField]
-    private GUIUpdater guiUpdater;
-
     public bool IsDone => !isRunning;
 
     public LocalOpenAlprResult Result => alprResult;
@@ -60,7 +57,7 @@ public class LocalOpenAlprProcess : MonoBehaviour,IProcess<byte[],LocalOpenAlprR
         WWWForm form = new WWWForm();
         form.AddField("region", localOpenAlprConfig.Region);
         form.AddBinaryData("file", picture,"file.jpg","image/jpeg");
-        using (UnityWebRequest www = UnityWebRequest.Post(GetUrl(), form))
+        using (UnityWebRequest www = UnityWebRequest.Post(localOpenAlprConfig.Url, form))
         {
             yield return www.SendWebRequest();
             if (!www.isNetworkError || !www.isHttpError)
@@ -69,7 +66,7 @@ public class LocalOpenAlprProcess : MonoBehaviour,IProcess<byte[],LocalOpenAlprR
             }
             else
             {
-                AppManager.System.ShowMessage("OpenAlpr server error");
+                AppManager.System.ShowMessage("Local OpenAlpr server error");
             }
         }
         alprAnim.StopAnim();
@@ -83,19 +80,6 @@ public class LocalOpenAlprProcess : MonoBehaviour,IProcess<byte[],LocalOpenAlprR
     {
         isRunning = false;
         localOpenAlprConfig = AppManager.Config.LocalOpenAlprConfig;
-    }
-
-    private string GetUrl()
-    {
-        return localOpenAlprConfig.Region == "eu" ? localOpenAlprConfig.Url : "http://79.137.72.55:5000/v3/api/detection";
-    }
-
-    public void SwitchRegion()
-    {
-        if (localOpenAlprConfig.Region == "eu")
-            localOpenAlprConfig.Region = "gb";
-        else
-            localOpenAlprConfig.Region = "eu";
     }
 
     public string ToLogString()
