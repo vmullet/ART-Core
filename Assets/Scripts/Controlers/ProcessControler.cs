@@ -72,6 +72,7 @@ public class ProcessControler : MonoBehaviour
         {
             resultPanel.ShowPlate(plateRecognizer.Result);
             // Add any post treatment there
+            WriteLogs();
         }
         else
         {
@@ -97,6 +98,7 @@ public class ProcessControler : MonoBehaviour
     private void WriteLogs()
     {
         string picturePath = LogWriter.WritePicture(screenshotProcess.Result);
+        resultPanel.ShowPicture(picturePath);
 
         float totalTime = plateRecognizer.ExecutionTime;
         LogRecord record = LogRecord.CreateRecord(new LogData(plateRecognizer.Result), 

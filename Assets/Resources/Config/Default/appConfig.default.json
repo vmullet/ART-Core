@@ -1,4 +1,9 @@
 {
+  "configVersion":"1.0.0",
+  "checkUpdateConfig": {
+	  "checkUpdateUrl":"",
+	  "checkUpdateAtStartup":false
+  },
   "cloudOpenAlprConfig":{
       "url":"https://api.openalpr.com/v2/recognize?recognize_vehicle=1&country={0}&secret_key={1}",
       "region":"eu",

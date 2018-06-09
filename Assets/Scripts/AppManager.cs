@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 
 public class AppManager : MonoSingleton<AppManager> {
 
+    [SerializeField]
     private AppConfig appConfig;
     private UpdateData updateData;
     private string configFolderPath;
@@ -41,8 +42,10 @@ public class AppManager : MonoSingleton<AppManager> {
     {
         InitSingletons();
         LoadConfig();
-        StartCameraScene();
-        //StartCoroutine(CheckUpdate());
+        if (appConfig.CheckUpdateConfig.CheckUpdateAtStartup)
+            StartCoroutine(CheckUpdate());
+        else
+            StartCameraScene();
     }
 
     #region PRIVATE METHODS
@@ -85,7 +88,7 @@ public class AppManager : MonoSingleton<AppManager> {
         if (!isFileJson || !appConfig.IsValid())
         {
             ResetConfig();
-            systemInfo.ShowMessage("Config Invalid, the config has been reset to default");
+            systemInfo.ShowMessage("Config Invalid or old version, the config has been reset to default");
         }
     }
 

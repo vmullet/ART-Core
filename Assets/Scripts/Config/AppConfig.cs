@@ -2,8 +2,12 @@
 using UnityEngine;
 
 [Serializable]
-public class AppConfig
-{
+public class AppConfig {
+
+    [SerializeField]
+    private string configVersion; // Useful to check that the config file is adapted to the version of the application
+    [SerializeField]
+    private CheckUpdateConfig checkUpdateConfig;
     [SerializeField]
     private LocalOpenAlprConfig localOpenAlprConfig;
     [SerializeField]
@@ -15,6 +19,8 @@ public class AppConfig
     [SerializeField]
     private SpeechControl[] speechControls;
 
+    public string ConfigVersion => configVersion;
+    public CheckUpdateConfig CheckUpdateConfig => checkUpdateConfig;
     public LocalOpenAlprConfig LocalOpenAlprConfig => localOpenAlprConfig;
     public CloudOpenAlprConfig CloudOpenAlprConfig => cloudOpenAlprConfig;
     public PlatformControl[] VuzixControls => vuzixControls;
@@ -28,8 +34,9 @@ public class AppConfig
 
     public bool IsValid()
     {
-        return localOpenAlprConfig.IsValid()
-        || cloudOpenAlprConfig.IsValid();
+        return configVersion == Application.version
+        && (localOpenAlprConfig.IsValid()
+        || cloudOpenAlprConfig.IsValid());
     }
 
 }
