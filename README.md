@@ -1,6 +1,6 @@
 # ART-Core
 
-![Art-Core](https://valentinmullet.fr/wp-content/uploads/2018/07/art-core.jpg)
+![Art-Core](https://valentinmullet.fr/wp-content/uploads/2018/07/artcore-screen.jpg)
 
 ## Presentation
 
