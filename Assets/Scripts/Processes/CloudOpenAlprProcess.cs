@@ -6,7 +6,7 @@ public class CloudOpenAlprProcess : PlateRecognizerProcess {
 
     private CloudOpenAlprConfig cloudOpenAlprConfig;
     private OpenAlprAnim alprAnim;
-    private CloudOpenAlprResult alprResult;
+    private CloudOpenAlprResponse alprResponse;
     private float executionTime;
     private bool isRunning = false;
 
@@ -16,7 +16,7 @@ public class CloudOpenAlprProcess : PlateRecognizerProcess {
 
     public override bool IsDone => !isRunning;
 
-    public override string Result => alprResult.Plate;
+    public override string Result => alprResponse.BestPlate;
 
     public override float ExecutionTime => executionTime;
 
@@ -55,7 +55,7 @@ public class CloudOpenAlprProcess : PlateRecognizerProcess {
             yield return www.SendWebRequest();
             if (!www.isNetworkError || !www.isHttpError)
             {
-                alprResult = CloudOpenAlprResult.CreateFromJson(www.downloadHandler.text);
+                alprResponse = CloudOpenAlprResponse.CreateFromJson(www.downloadHandler.text);
             }
             else
             {
@@ -76,7 +76,7 @@ public class CloudOpenAlprProcess : PlateRecognizerProcess {
 
     public override void ResetProcess()
     {
-        alprResult = null;
+        alprResponse = null;
     }
 
     private void InitProcess()

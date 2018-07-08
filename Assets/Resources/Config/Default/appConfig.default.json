@@ -10,8 +10,8 @@
       "token":"sk_126cc3501dd60c7c40c17fd4"
   },
    "localOpenAlprConfig":{
-      "url":"",
-      "region":""
+      "url":"http://79.137.72.55:5000/v4/api/detection",
+      "region":"eu"
    },
    "androidControls":[
       {

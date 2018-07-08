@@ -21,7 +21,7 @@ public class GUIUpdater : MonoBehaviour {
     [SerializeField]
     private Text devProdText;
     [SerializeField]
-    private Text btnDevProdText;
+    private Text btnCloudLocal;
     [SerializeField]
     private Image batteryImage;
     [SerializeField]
@@ -111,12 +111,11 @@ public class GUIUpdater : MonoBehaviour {
             return Color.green;
     }
 
-    public void SetEurotunnelMode(string mode)
+    public void SetRecognizeMode(RecognizeType mode)
     {
-#if UNITY_VUZIX
-        devProdText.text = mode;
-#else
-        btnDevProdText.text = mode;
-#endif
+        if (mode == RecognizeType.CLOUD_OPENALPR)
+            btnCloudLocal.text = "CLOUD";
+        else
+            btnCloudLocal.text = "LOCAL";
     }
 }

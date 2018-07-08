@@ -36,6 +36,7 @@ public class ProcessControler : MonoBehaviour
                 plateRecognizer = null;
                 break;
         }
+        guiUpdater.SetRecognizeMode(recognizeType);
         guiUpdater.ShowTotalExecutionTime(string.Empty);
     }
 
@@ -108,6 +109,22 @@ public class ProcessControler : MonoBehaviour
                                                   new LogData("Picture",picturePath,true)
                                                   );
         LogWriter.WriteRecord(record);
+    }
+
+    public void SwitchRecognizeType()
+    {
+        if (recognizeType == RecognizeType.CLOUD_OPENALPR)
+        {
+            recognizeType = RecognizeType.LOCAL_OPENALPR;
+            plateRecognizer = localAlprProcess;
+        }
+        else
+        {
+            recognizeType = RecognizeType.CLOUD_OPENALPR;
+            plateRecognizer = cloudAlprProcess;
+        }
+            
+        guiUpdater.SetRecognizeMode(recognizeType);
     }
 
 }
