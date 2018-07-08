@@ -1,5 +1,7 @@
 # ART-Core
 
+![Art-Core](https://valentinmullet.fr/wp-content/uploads/2018/07/art-core.jpg)
+
 ## Presentation
 
 ART-Core (**A**ugmented **R**eality for **T**raffic) is an application to get clients informations by recognizing their vehicle plates.
