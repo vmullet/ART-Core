@@ -15,7 +15,7 @@ This application does the following actions :
 
 * Takes photo of the vehicle photo (press button or by vocal command)
 * Recognize the plate by using [OpenAlpr service](https://www.openalpr.com/) (Local webservice or Cloud solution)
-* Display clients informations (To be implemented)
+* Display clients informations (To be implemented for the company who wants to use this application)
 
 
 ## License
